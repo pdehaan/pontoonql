@@ -86,3 +86,9 @@ $ npx pdehaan/pontoonql firefox-monitor-website 80 | jq '[.[] | .locale.code]'
   "ru"
 ]
 ```
+
+Or, if you want to scan for locales with non-zero `.stringsWithWarnings` values:
+
+```sh
+$ npx pdehaan/pontoonql firefox-monitor-website | jq '[.[] | select(.stringsWithWarnings!=0) | {locale: .locale.code, warnings: .stringsWithWarnings}]'
+```
