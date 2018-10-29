@@ -8,5 +8,5 @@ main();
 
 async function main() {
   const res = await pontoonql(...argv);
-  console.log(res);
+  console.log(JSON.stringify(res));
 }
