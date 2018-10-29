@@ -3,17 +3,25 @@
   "description": "Get translation status for a Pontoon project.",
   "version": "1.0.0",
   "author": "Moe Zilla",
+  "bin": "cli.js",
   "bugs": {
     "url": "https://github.com/pdehaan/pontoonql/issues"
   },
   "dependencies": {
     "got": "9.2.2"
   },
+  "devDependencies": {
+    "eslint": "5.7.0"
+  },
   "files": [
+    "cli.js",
     "index.js"
   ],
   "homepage": "https://github.com/pdehaan/pontoonql#readme",
-  "keywords": ["pontoon", "graphql"],
+  "keywords": [
+    "graphql",
+    "pontoon"
+  ],
   "license": "MPL-2.0",
   "main": "index.js",
   "repository": {
@@ -24,8 +32,5 @@
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "node test"
-  },
-  "devDependencies": {
-    "eslint": "5.7.0"
   }
 }
