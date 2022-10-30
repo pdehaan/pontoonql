@@ -8,7 +8,7 @@
     "url": "https://github.com/pdehaan/pontoonql/issues"
   },
   "dependencies": {
-    "got": "9.2.2"
+    "got": "11.8.5"
   },
   "devDependencies": {
     "eslint": "5.7.0"
