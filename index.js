@@ -1,4 +1,4 @@
-const got = require("got");
+const axios = require("axios");
 
 /**
  * @typedef Locale
@@ -46,15 +46,17 @@ module.exports = async function (slug, threshold=1) {
     throw new Error("Project name not specified");
   }
   const query = {query: `{project(slug:"${slug}"){name,localizations{locale{code,name}totalStrings,approvedStrings,stringsWithWarnings,missingStrings}}}`};
-  const {body} = await got.get("https://pontoon.mozilla.org/graphql", {json: true, query});
+  const { data } = await axios.get("https://pontoon.mozilla.org/graphql", {params: query});
 
-  if (!body || !body.data || !body.data.project || !body.data.project.localizations) {
+  const body = data.data;
+
+  if (!Array.isArray(body?.project?.localizations)) {
     const err = new Error("Unexpected GraphQL response");
     err.body = body;
     throw err;
   }
 
-  return body.data.project.localizations
+  return body.project.localizations
     .reduce((arr, locale) => {
       locale.progress = (locale.approvedStrings + locale.stringsWithWarnings) / locale.totalStrings * 100;
       if (locale.progress >= threshold) {
